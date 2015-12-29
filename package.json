@@ -1,0 +1,51 @@
+{
+  "name": "fitio.io",
+  "version": "1.0.0",
+  "description": "fitio.io Landing Page",
+  "main": "index.html",
+  "scripts": {
+    "copy:assets": "cp -rf img assets/ && cp -rf fonts assets/",
+
+    "sass:build": "",
+    "sass:dev": "node-sass --output css --output-style compact -r -w sass",
+
+    "concat:css": "cat css/* | cleancss -o assets/css/main.css",
+    "concat:js": "",
+
+    "purifycss": "",
+
+    "watch:css": "onchange 'css/*.css' -- npm run concat:css",
+    "watch:js": "onchange 'js/*.js' -- npm run concat:js",
+
+    "liveserver": "live-server --port=8080 --wait=1000 --ignore=sass,php,img,fonts,node_modules,index.html,package.json ./",
+
+    "concurrent:dev":  "concurrent \"npm run sass:dev\" \"npm run watch:css\" \"npm run liveserver\"",
+
+    "serve": "npm run copy:assets && npm run concat:css && npm run concurrent:dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LBrian/fitio.github.io.git"
+  },
+  "author": "Brian Yueh-Peng Liu <brianliu@fitio.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LBrian/fitio.github.io/issues"
+  },
+  "homepage": "https://github.com/LBrian/fitio.github.io#readme",
+  "devDependencies": {
+    "browserify": "^12.0.1",
+    "clean-css": "^3.4.8",
+    "concurrently": "^1.0.0",
+    "live-server": "^0.9.0",
+    "node-sass": "^3.4.2",
+    "onchange": "^2.0.0"
+  },
+  "dependencies": {
+    "browserify": "^12.0.1",
+    "clean-css": "^3.4.8",
+    "node-sass": "^3.4.2",
+    "concurrently": "^1.0.0",
+    "purify-css": "^1.0.17"
+  }
+}
