@@ -4,24 +4,24 @@
   "description": "fitio.io Landing Page",
   "main": "index.html",
   "scripts": {
-    "copy:assets": "cp -rf img assets/ && cp -rf fonts assets/",
-
-    "sass:build": "",
+    "clean:dev": "rm -rf dev",
+    "clean:dist": "rm -rf dist",
+    "clean": "npm run clean:dev && npm run clean:dist",
+    "copy:dev": "mkdir dev && cp index.html dev/ && cp -rf img dev/ && cp -rf fonts dev/ && mkdir dev/css && mkdir dev/js",
+    "copy:dist": "mkdir dist && cp index.html dist/ && cp -rf img dist/ && cp -rf fonts dist/ && mkdir dist/css && mkdir dist/js",
     "sass:dev": "node-sass --output css --output-style compact -r -w sass",
-
-    "concat:css": "cat css/* | cleancss -o assets/css/main.css",
-    "concat:js": "",
-
-    "purifycss": "",
-
-    "watch:css": "onchange 'css/*.css' -- npm run concat:css",
-    "watch:js": "onchange 'js/*.js' -- npm run concat:js",
-
-    "liveserver": "live-server --port=8080 --wait=1000 --ignore=sass,php,img,fonts,node_modules,index.html,package.json ./",
-
-    "concurrent:dev":  "concurrent \"npm run sass:dev\" \"npm run watch:css\" \"npm run liveserver\"",
-
-    "serve": "npm run copy:assets && npm run concat:css && npm run concurrent:dev"
+    "sass:dist": "node-sass --output css --output-style compact -r sass",
+    "concat-css:dev": "cat css/* | cleancss -o dev/css/main.css",
+    "concat-css:dist": "cat css/* | cleancss -o dist/css/main.css",
+    "concat-js:dev": "uglifyjs js/jquery-1.11.2.min.js js/modernizr.custom.js js/polyfill.js js/draggabilly.pkgd.min.js js/elastiStack.js js/precentLoader.js js/scrollStyler.js js/jquery-ui.min.js js/jquery.dlmenu.js js/fotorama.js js/owl.carousel.js js/responsiveslides.js js/retina.js js/jquery-mousewheel.js js/main.js --mangle -o dev/js/main.js",
+    "concat-js:dist": "uglifyjs js/jquery-1.11.2.min.js js/modernizr.custom.js js/polyfill.js js/draggabilly.pkgd.min.js js/elastiStack.js js/precentLoader.js js/scrollStyler.js js/jquery-ui.min.js js/jquery.dlmenu.js js/fotorama.js js/owl.carousel.js js/responsiveslides.js js/retina.js js/jquery-mousewheel.js js/main.js --mangle -o dist/js/main.js",
+    "purifycss": "purifycss dist/css/main.css index.html dist/js/main.js --min --out dist/css/main.min.css",
+    "watch:css": "onchange 'css/*.css' -- npm run concat-css:dev",
+    "watch:js": "onchange 'js/*.js' -- npm run concat-js:dev",
+    "liveserver": "live-server --port=8080 --wait=1000 --ignore=sass,php,img,fonts,node_modules,package.json dev/",
+    "concurrent:dev": "concurrent \"npm run sass:dev\" \"npm run watch:css\" \"npm run liveserver\"",
+    "serve": "npm run clean:dev && npm run copy:dev && npm run concat-css:dev && npm run concat-js:dev && npm run concurrent:dev",
+    "build": "npm run clean:dist && npm run copy:dist && npm run sass:dist && npm run concat-css:dist && npm run concat-js:dist && npm run purifycss"
   },
   "repository": {
     "type": "git",
@@ -34,18 +34,18 @@
   },
   "homepage": "https://github.com/LBrian/fitio.github.io#readme",
   "devDependencies": {
-    "browserify": "^12.0.1",
     "clean-css": "^3.4.8",
     "concurrently": "^1.0.0",
+    "http-server": "^0.8.5",
     "live-server": "^0.9.0",
     "node-sass": "^3.4.2",
     "onchange": "^2.0.0"
   },
   "dependencies": {
-    "browserify": "^12.0.1",
     "clean-css": "^3.4.8",
-    "node-sass": "^3.4.2",
     "concurrently": "^1.0.0",
-    "purify-css": "^1.0.17"
+    "node-sass": "^3.4.2",
+    "purify-css": "^1.0.17",
+    "uglify-js": "^2.6.1"
   }
 }

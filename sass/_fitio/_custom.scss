@@ -1,0 +1,196 @@
+// Override thumb keyframe to animate images on small screen view
+@media(max-width : 991px) {
+  @keyframes thumb {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(1deg);
+    }
+  }
+}
+
+/* Light shining animation keyframes */
+@-moz-keyframes shine {
+  0% {
+    opacity: 0.2;
+    -moz-transform: translate(4px, 0);
+    transform: translate(4px, 0);
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  80% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.2;
+    -moz-transform: translate(-4px, 0);
+    transform: translate(-4px, 0);
+  }
+}
+
+@-webkit-keyframes shine {
+  0% {
+    opacity: 0.2;
+    -webkit-transform: translate(4px, 0);
+    transform: translate(4px, 0);
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  80% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.2;
+    -webkit-transform: translate(-4px, 0);
+    transform: translate(-4px, 0);
+  }
+}
+
+@keyframes shine {
+  0% {
+    opacity: 0.2;
+    -moz-transform: translate(4px, 0);
+    -ms-transform: translate(4px, 0);
+    -webkit-transform: translate(4px, 0);
+    transform: translate(4px, 0);
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  80% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.2;
+    -moz-transform: translate(-4px, 0);
+    -ms-transform: translate(-4px, 0);
+    -webkit-transform: translate(-4px, 0);
+    transform: translate(-4px, 0);
+  }
+}
+
+// Override Bootstrap default placeholder text colour
+.form-control {
+  &::-moz-placeholder {
+    color: $input-color-placeholder;
+  }
+
+  &:-ms-input-placeholder  {
+    color: $input-color-placeholder;
+  }
+
+  &::-webkit-input-placeholder  {
+    color: $input-color-placeholder;
+  }
+}
+
+// Override default bottom position when the navigation menu is collapsed
+nav.collapsed {
+  bottom: auto;
+}
+
+// Override padding bottom of main element as the navbar is positioned on top
+main {
+  padding-bottom: 10px;
+}
+
+// Customise brand logo on navbar
+.navbar-brand > img {
+  margin: 0;
+  height: 25px;
+  display: inline-block;
+  padding-left: 25px;
+}
+
+// Override timer position to relative
+.timer {
+  position: relative;
+  top: auto;
+}
+
+// Override default padding of main page container
+.main_block.main-page {
+  padding: 70px 0 0;
+}
+
+// Slightly modify transform to position mobile phone image
+.top-left-block {
+  opacity: 0.6;
+  transform: rotate(30deg) translate(35%, -30%) scale(1);
+}
+
+@media(max-width : 991px) {
+  .top-left-block {
+    transform: rotate(30deg) translate(35%, -30%) scale(1);
+  }
+}
+
+// Customised background theme for fitio
+.fitio_bg {
+  background-color: $fitio-color;
+
+  // Add background color to navbar-header to scroll main contents
+  @media(max-height: $min-height) {
+    .navbar-header {
+      background-color: $fitio-color;
+    }
+  }
+
+  .wrapp {
+    // Preloading background colour before rendering contents
+    .preload-bg {
+      background-color: $fitio-color;
+    }
+
+    &.done,
+    &.hide-preloader {
+      .preload-bg {
+        background-color: $fitio-color;
+      }
+    }
+  }
+
+  .subscribe {
+    // Align brand colour to submit button icon
+    .subscribe-form input[type="submit"],
+    .subscribe-form input[type="button"] {
+      border-color: #000;
+      border-left: 1px solid;
+      background: $fitio-color url("../img/send-white.svg") 50% 50% no-repeat;
+      background-size: 65%;
+    }
+  }
+}
+
+// Animation of light shining
+.shining {
+  width: 100%;
+  height: 100%;
+  opacity: 0.2;
+  position:absolute;
+  background-size: contain;
+  background-position: 50% 30%;
+  background-repeat: no-repeat;
+  background-image: url(../img/light2.png);
+  -webkit-animation: shine 5s linear alternate infinite;
+  animation: shine 5s linear alternate infinite;
+}
+
+.shining.shining-alt {
+  opacity: 0.2;
+  background-image: url(../img/light1.png);
+  -webkit-animation: shine 5s linear 2.5s alternate infinite;
+  animation: shine 5s linear 2.5s alternate infinite;
+}
