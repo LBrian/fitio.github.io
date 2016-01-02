@@ -3745,13 +3745,13 @@ function initDaysLeft( block, options ) {
 
             document.forms[ 'subscribe-form' ].style.backgroundColor = '';
             //document.forms[ 'subscribe-form' ].style.visibility = 'visible';
-            document.forms[ 'subscribe-form' ][ 'subscribe' ].focus();
-            document.forms[ 'subscribe-form' ][ 'subscribe' ].placeholder = 'ENTER YOUR EMAIL';
+            document.forms[ 'subscribe-form' ][ 'EMAIL' ].focus();
+            document.forms[ 'subscribe-form' ][ 'EMAIL' ].placeholder = 'ENTER YOUR EMAIL';
 
             $( 'body' ).on(
                 'click', function ( e ) {
 
-                    if ( e.target.parentNode !== document.forms[ 'subscribe' ] ) {
+                    if ( e.target.parentNode !== document.forms[ 'EMAIL' ] ) {
 
                         $( '.subscribe-form' ).removeClass( 'open' );
                         $( self ).parent().removeClass( 'open' );
@@ -4167,7 +4167,7 @@ $(document ).ready(function(){
 
     // send email
     if( document.forms[ 'subscribe-form' ] ) {
-        addEvent(document.forms[ 'subscribe-form' ][ 'subscribe' ], 'click', function( event ){
+        addEvent(document.forms[ 'subscribe-form' ][ 'EMAIL' ], 'click', function( event ){
             event = event || window.event;
             event.stopPropagation();
         });
@@ -4183,7 +4183,7 @@ $(document ).ready(function(){
             messageSuccess = 'Your email is sended',
             messageInvalid = 'Please enter a valid email address',
             messageSigned  = 'This email is already signed',
-            messageErrore  = 'Error request';
+            messageError  = 'Error request';
 
         e.preventDefault();
 
@@ -4202,34 +4202,30 @@ $(document ).ready(function(){
         self.style.backgroundColor = 'rgba(111, 188, 109, 0.5)';
 
         $.ajax({
-            url     : 'php/notify-me.php',
+            url     : '//fitio.us12.list-manage.com/subscribe/post-json?u=927d53114a1b8f4f26e754793&id=bfab5e5cbd&c=?',
             type    : 'POST',
+            dataType: 'jsonp',
             data    : form.serialize(),
             success : function(data){
+
                 form.find('.btn').prop('disabled', true);
 
                 message.removeClass('text-danger').removeClass('text-success').fadeIn();
 
-                switch(data) {
-                    case 0:
-                        self[ 'subscribe' ].placeholder = 'ENTER YOUR EMAIL';
-                        message.html(messageSuccess).addClass('text-success').fadeIn();
+                switch(data.result) {
+                    case 'success':
+                        self[ 'EMAIL' ].placeholder = 'ENTER YOUR EMAIL';
+                        message.html(data.msg).addClass('text-success').fadeIn();
                         setTimeout(function(){
                             form.trigger('reset');
                             message.fadeOut().delay(500).queue(function(){
                                 message.html('').dequeue();
                                 self.style.backgroundColor = '';
                             });
-                        }, 1000);
-                        break;
-                    case 1:
-                        self.style.backgroundColor = 'rgba(245, 55, 148, 0.6)';
-                        setTimeout(function(){
-                            self.style.backgroundColor = '';
-                        },1000);
+                        }, 10000);
                         break;
                     default:
-                        message.html(messageErrore).addClass('text-danger').fadeIn();
+                        message.html(data.msg).addClass('text-danger').fadeIn();
                         self.style.backgroundColor = 'rgba(245, 55, 148, 0.6)';
                         setTimeout(function(){
                             self.style.backgroundColor = '';

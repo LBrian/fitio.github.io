@@ -1104,6 +1104,8 @@ nav.collapsed { bottom: auto; }
 
 main { padding-bottom: 10px; }
 
+.text-success { color: #6FBC6D; }
+
 .navbar-brand > img { margin: 0; height: 25px; display: inline-block; padding-left: 25px; }
 
 .timer { position: relative; top: auto; }
