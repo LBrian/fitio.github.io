@@ -1058,6 +1058,7 @@ body.inverse { background: rgba(0, 0, 0, 0.5) url(../img/inverse_bg.jpg) 50% 50%
 
 .inverse blockquote footer { color: #000; }
 
+/* Import bootstrap variables */
 /* fitio customisations */
 @media (max-width: 991px) { @keyframes thumb { 0% { transform: rotate(0deg); }
     100% { transform: rotate(1deg); } } }
@@ -1116,9 +1117,19 @@ main { padding-bottom: 10px; }
 
 @media (max-width: 991px) { .top-left-block { transform: rotate(30deg) translate(35%, -30%) scale(1); } }
 
+.form-message-container { width: 420px; margin: 10px auto 0; }
+
+@media (max-width: 767px) { .form-message-container { width: 90%; } }
+
+.form-message-container .form-message { position: inherit; top: auto; left: auto; }
+
+.main_block .subscribe + div.form-message-container { display: none; }
+
+.main_block .subscribe.open + div.form-message-container { display: block; }
+
 .fitio_bg { background-color: #289EBE; }
 
-@media (max-height: 480px) { .fitio_bg .navbar-header { background-color: #289EBE; } }
+@media (max-height: 550px) { .fitio_bg .navbar-header { background-color: #289EBE; } }
 
 .fitio_bg .wrapp .preload-bg, .fitio_bg .wrapp .preload-bg .preloaderWraper { background-color: #289EBE; }
 

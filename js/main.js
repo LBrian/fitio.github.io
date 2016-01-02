@@ -3756,6 +3756,7 @@ function initDaysLeft( block, options ) {
                         $( '.subscribe-form' ).removeClass( 'open' );
                         $( self ).parent().removeClass( 'open' );
                         $( self ).removeClass( 'open' );
+                        $('.form-message').html('').dequeue();
 
                     }
 
@@ -4179,7 +4180,7 @@ $(document ).ready(function(){
     //Notify Me
     $('.notify-me').submit(function(e){
         var form           = $(this),
-            message        = form.find('.form-message'),
+            message        = $('.form-message'),
             messageSuccess = 'Your email is sended',
             messageInvalid = 'Please enter a valid email address',
             messageSigned  = 'This email is already signed',
@@ -4233,6 +4234,9 @@ $(document ).ready(function(){
                 }
 
                 form.find('.btn').prop('disabled', false);
+
+                // Scroll to button to show message mainly on mobile view
+                $('#pt-main').scrollTop($(document.body).height());
             }
         });
 
