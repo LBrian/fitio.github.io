@@ -6,11 +6,11 @@
   "scripts": {
     "clean:dev": "rm -rf dev",
     "clean:dist": "rm -rf dist",
-    "clean": "npm run clean:dev && npm run clean:dist",
+    "clean": "rm -rf css && npm run clean:dev && npm run clean:dist",
     "copy:dev": "mkdir dev && cp index.html dev/ && cp -rf img dev/ && cp -rf fonts dev/ && mkdir dev/css && mkdir dev/js",
     "copy:dist": "mkdir dist && cp index.html dist/ && cp robots.txt dist/ && cp -rf img dist/ && cp -rf fonts dist/ && mkdir dist/css && mkdir dist/js",
+    "sass": "node-sass --output css --output-style compact -r sass",
     "sass:dev": "node-sass --output css --output-style compact -r -w sass",
-    "sass:dist": "node-sass --output css --output-style compact -r sass",
     "concat-css:dev": "cat css/* | cleancss -o dev/css/main.css",
     "concat-css:dist": "cat css/* | cleancss -o dist/css/main.css",
     "concat-js:dev": "uglifyjs js/jquery-1.11.2.min.js js/modernizr.custom.js js/polyfill.js js/draggabilly.pkgd.min.js js/elastiStack.js js/precentLoader.js js/scrollStyler.js js/jquery-ui.min.js js/jquery.dlmenu.js js/fotorama.js js/owl.carousel.js js/responsiveslides.js js/retina.js js/jquery-mousewheel.js js/main.js --mangle -o dev/js/main.js",
@@ -21,8 +21,8 @@
     "watch:html": "onchange index.html -- cp index.html dev/",
     "liveserver": "live-server --port=8080 --wait=1000 dev/",
     "concurrent:dev": "concurrent \"npm run sass:dev\" \"npm run watch:css\" \"npm run watch:js\" \"npm run watch:html\" \"npm run liveserver\"",
-    "serve": "npm run clean:dev && npm run copy:dev && npm run concat-css:dev && npm run concat-js:dev && npm run concurrent:dev",
-    "build": "npm run clean:dist && npm run copy:dist && npm run sass:dist && npm run concat-css:dist && npm run concat-js:dist && npm run purifycss"
+    "serve": "npm run clean:dev && npm run copy:dev && npm run sass && npm run concat-css:dev && npm run concat-js:dev && npm run concurrent:dev",
+    "build": "npm run clean:dist && npm run copy:dist && npm run sass && npm run concat-css:dist && npm run concat-js:dist && npm run purifycss"
   },
   "repository": {
     "type": "git",
