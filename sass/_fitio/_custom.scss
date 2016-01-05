@@ -224,3 +224,8 @@ main {
   -webkit-animation: shine 5s linear 2.5s alternate infinite;
   animation: shine 5s linear 2.5s alternate infinite;
 }
+
+// Increase icon size social networking links
+.navbar_icons > ul > li > a {
+  font-size: 20px;
+}
