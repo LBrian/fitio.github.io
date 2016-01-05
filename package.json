@@ -22,7 +22,7 @@
     "liveserver": "live-server --port=8080 --wait=1000 dev/",
     "concurrent:dev": "concurrent \"npm run sass:dev\" \"npm run watch:css\" \"npm run watch:js\" \"npm run watch:html\" \"npm run liveserver\"",
     "serve": "npm run clean:dev && npm run copy:dev && npm run sass && npm run concat-css:dev && npm run concat-js:dev && npm run concurrent:dev",
-    "build": "npm run clean:dist && npm run copy:dist && npm run sass && npm run concat-css:dist && npm run concat-js:dist && npm run purifycss"
+    "build": "npm run clean:dist && npm run copy:dist && npm run sass && npm run concat-css:dist && npm run concat-js:dist && npm run purifycss && rm -rf css"
   },
   "repository": {
     "type": "git",
