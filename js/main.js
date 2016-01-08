@@ -3749,9 +3749,9 @@ function initDaysLeft( block, options ) {
             document.forms[ 'subscribe-form' ][ 'EMAIL' ].placeholder = 'ENTER YOUR EMAIL';
 
             $( 'body' ).on(
-                'click', function ( e ) {
+                'click touchend', function ( e ) {
 
-                    if ( e.target.parentNode !== document.forms[ 'EMAIL' ] ) {
+                    if ( e.target.parentNode !== document.forms[ 'subscribe-form' ] ) {
 
                         $( '.subscribe-form' ).removeClass( 'open' );
                         $( self ).parent().removeClass( 'open' );
