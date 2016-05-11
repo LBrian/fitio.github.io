@@ -2266,7 +2266,7 @@ function initClipCanvas( block, count, option ) {
                             $(element ).parent().find('.timer' ).remove();
                           }, i*100);
                         });
-                    
+
                     }
 
                 });
@@ -3505,7 +3505,7 @@ function initDaysLeft( block, options ) {
                         numberFont : '30px Abel', // font
                         textColor  : 'rgba(0,0,0,0.5)',
                         textFont   : '18px Abel',
-                        data       : "August 31, 2016", // YOUR DATA
+                        data       : "December 31, 2016", // YOUR DATA
                         text       : 'DAYS LEFT', // text
                         lineColor  : 'rgba(0,0,0,0.5)'
                     }
@@ -3522,7 +3522,7 @@ function initDaysLeft( block, options ) {
                         numberFont : '30px Abel', // font
                         textColor  : 'rgba(255,255,255,0.5)',
                         textFont   : '18px Abel',
-                        data       : "August 31, 2016", // YOUR DATA
+                        data       : "December 31, 2016", // YOUR DATA
                         text       : 'DAYS LEFT', // text
                         lineColor  : 'rgba(255,255,255,0.5)'
                     }
